@@ -1,0 +1,9 @@
+.header {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-image: linear-gradient(to right, rgb(35, 99, 228) , rgb(40, 17, 101)); 
+    color: white;
+    font-weight: bold;
+}
