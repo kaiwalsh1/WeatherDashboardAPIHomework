@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,33 +10,40 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="./Assets/css/style.css">
 </head>
+
 <body>
     <h1 class="header">Weather Dashboard</h1>
     <div class="container">
         <div class="row">
+            <!-- Search for a City -->
             <div class="col-4">
                 <h2>Search for a City:</h2>
                 <div class="mb-3">
                     <label for="formGroupExampleInput" class="form-label"></label>
                     <input type="text" class="form-control" id="formGroupExampleInput" placeholder="San Diego">
                 </div>
-                <div class="d-grid gap-2 col-12 mx-auto">
+                <div class="searchBtn btn-block">
                     <button class="btn btn-primary" type="button">Search</button>
                 </div>
             </div>
-            <div class="col">
+            <!-- Weather -->
+            <div class="col-md-9">
                 <h2 id="city"></h2>
             </div>
+            <!-- 5-Day Forecast -->
+            <div class="col">
+                <h2 id="forecast"></h2>
+            </div>
         </div>
-    
-    
 
 
-    <!-- Bootstrap and JS -->
-    <script src="./Assets/js/script.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+
+        <!-- Bootstrap and JS -->
+        <script src="./Assets/js/script.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </body>
-</html>
 
+</html>

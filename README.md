@@ -7,6 +7,9 @@ HTML, CSS & JavaScript
 https://kaiwalsh1.github.io/WeatherDashboardAPIHomework/
 
 ## Description 
+Using a weather API, this weather dashboard application dynamically retrieves weather data and 
+
+
 Built an application from scratch that retrieves weather data and meets the following criteria:
 
 GIVEN a weather dashboard with form inputs
@@ -23,6 +26,8 @@ THEN I am again presented with current and future conditions for that city
 
 ## Sources
 https://openweathermap.org/api/one-call-api
+https://coding-boot-camp.github.io/full-stack/apis/how-to-use-api-keys
+
 
 ## Screenshot
 
