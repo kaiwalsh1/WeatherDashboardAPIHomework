@@ -2,6 +2,7 @@
 
 ## Built With
 HTML, CSS & JavaScript
+Help from CJ Sanders
 
 ## Link
 https://kaiwalsh1.github.io/WeatherDashboardAPIHomework/

@@ -20,10 +20,6 @@ function getApi() {
     console.log(queryURL);
     fetch(queryURL)
         .then(function (response) {
-            // console.log(response);
-            // if (response.status === 200) {
-            //     responseText.textContent = response.status;
-            // }
             return response.json();
         })
         .then(function (data) {
