@@ -6,17 +6,13 @@ let weatherDashboard = $('#weatherDashboard');
 let queryURL;
 let responseText = document.getElementById('response-text');
 
-
 $('button').click(function (e) {
-    city = e.target.textContent;
-    if (city === 'Search') {
-        city = $('#formGroupExampleInput').val();
-    }
+    city = $('#formGroupExampleInput').val();
     getApi();
 })
 
 function getApi() {
-    queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=" + APIKey;
+    queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + APIKey;
     console.log(queryURL);
     fetch(queryURL)
         .then(function (response) {
@@ -24,10 +20,10 @@ function getApi() {
         })
         .then(function (data) {
             console.log(data);
-            console.log(data.city.coord);
-            lat = data.city.coord.lat;
-            lon = data.city.coord.lon;
-
+            console.log(data.coord);
+            lat = data.coord.lat;
+            lon = data.coord.lon;
+            $('#location').text(data.name);
             getApi2()
         })
 }
