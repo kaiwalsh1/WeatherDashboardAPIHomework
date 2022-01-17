@@ -36,6 +36,7 @@ function getApi() {
             lat = data.coord.lat;
             lon = data.coord.lon;
             $('#location').text(data.name);
+            $('#location').addClass('strong');
             $('#temp').text(data.main.temp);
             $('#wind').text(data.wind.speed);
             $('#humid').text(data.main.humidity);
@@ -69,9 +70,13 @@ function getApi2() {
                 $('.grid').append(parentContainer);
                 let tempEl = $("<div>");
                 tempEl = data.daily[i].temp.day;
-                console.log(tempEl);
-                parentContainer.append(tempEl);
-                let 
+                parentContainer.append("Temp: " + tempEl + "°F");
+                let windEl = $("<div>");
+                windEl = data.daily[i].wind_speed;
+                parentContainer.append("Wind: " + windEl + "MPH");
+                let humidEl = $("<div>");
+                humidEl = data.daily[i].humidity;
+                parentContainer.append("Humidity: " + humidEl + "%");
             }
         })
 }
