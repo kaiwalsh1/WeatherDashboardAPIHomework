@@ -4,10 +4,23 @@ let lat, lon;
 let temp, wind_speed, icon, humidity, uvi;
 let weatherDashboard = $('#weatherDashboard');
 let queryURL;
-let responseText = document.getElementById('response-text');
+let responseText = $('#response-text');
+let searchHistoryContainer = $('#searchHistoryContainer');
+let searchBtn = $('#button');
+let day = [];
+let recentSearch = $('#recentSearch');
+console.log(recentSearch);
 
+
+// Button
 $('button').click(function (e) {
-    city = $('#formGroupExampleInput').val();
+    city = $('#formGroupInput').val();
+    // recentSearch.addClass('form-control');
+    var nameSection = $('<div>');
+    nameSection.addClass('form-control my-1');
+    nameSection.text(city);
+    // search history
+    recentSearch.append(nameSection);
     getApi();
 })
 
@@ -20,28 +33,45 @@ function getApi() {
         })
         .then(function (data) {
             console.log(data);
-            console.log(data.coord);
             lat = data.coord.lat;
             lon = data.coord.lon;
             $('#location').text(data.name);
-            getApi2()
+            $('#temp').text(data.main.temp);
+            $('#wind').text(data.wind.speed);
+            $('#humid').text(data.main.humidity);
+
+            getApi2();
         })
 }
 
 
 function getApi2() {
-    queryURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=${APIKey}`;
+    queryURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=${APIKey}&exclude=hourly,minutely`;
     fetch(queryURL)
         .then(function (response) {
             return response.json();
         })
         .then(function (data) {
             console.log(data, 'new');
-            temp = data.current.temp;
-            wind_speed = data.current.wind_speed;
-            icon = data.current.weather[0].icon;
-            humidity = data.current.humidity;
-            uvi = data.current.uvi;
-            console.log(temp, wind_speed, icon, humidity, uvi);
+            $('#uv').text(data.daily[0].uvi);
+            for (let i = 1; i < 6; i++) {
+                let parentContainer = $('<div>');
+                parentContainer.addClass('g-col-6 g-col-md-4');
+                let timeElement = $('<div>');
+                let unixtime = data.daily[i].dt;
+                let formatTime = moment.unix(unixtime).format("MM/DD/YYYY");
+                timeElement.text(formatTime);
+                parentContainer.append(timeElement);
+                let imageEl = $("<img>");
+                let urlCode = "http://openweathermap.org/img/w/" + data.daily[i].weather[0].icon + ".png";
+                imageEl.attr("src", urlCode);
+                parentContainer.append(imageEl);
+                $('.grid').append(parentContainer);
+                let tempEl = $("<div>");
+                tempEl = data.daily[i].temp.day;
+                console.log(tempEl);
+                parentContainer.append(tempEl);
+                let 
+            }
         })
 }

@@ -19,17 +19,22 @@
             <div class="col-4">
                 <h2>Search for a City:</h2>
                 <div class="mb-3">
-                    <label for="formGroupExampleInput" class="form-label"></label>
-                    <input type="search" class="form-control" id="formGroupExampleInput" placeholder="San Diego">
+                    <label for="formGroupInput" class="form-label"></label>
+                    <input type="search" class="form-control" id="formGroupInput" placeholder="San Diego">
                 </div>
                 <div class="searchBtn btn-block ">
                     <button id="button" class="btn btn-primary" type="button">Search</button>
                     <hr />
                 </div>
+                <div class="container" id="searchHistoryContainer">
+                    <div class="row" id="recentSearch">
+
+                    </div>
+                </div>
             </div>
             <!-- Weather Forecast -->
-            <div id="dayForecast" class="col-md-9">
-                <div class="row">
+            <div id="dayForecast" class="d-flex col-md-9">
+                <div class="align-items-end">
                     <div id="location"></div>
                     <div id="temp"></div>
                     <div id="wind"></div>
@@ -41,41 +46,6 @@
             <div class="col">
                 <h3 id="forecast" class="hidden">5-Day Forecast:</h3>
                 <div class="grid">
-                    <div id="day1" class="g-col-6 g-col-md-4">
-                        <div></div>
-                        <div><img /></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </div>
-                    <div id="day2" class="g-col-6 g-col-md-4">
-                        <div></div>
-                        <div><img /></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </div>
-                    <div id="day3" class="g-col-6 g-col-md-4">
-                        <div></div>
-                        <div><img /></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </div>
-                    <div id="day4" class="g-col-6 g-col-md-4">
-                        <div></div>
-                        <div><img /></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </div>
-                    <div id="day5" class="g-col-6 g-col-md-4">
-                        <div></div>
-                        <div><img /></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -85,6 +55,8 @@
 
         <!-- Bootstrap and JS -->
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
         <script src="./Assets/js/script.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </body>
