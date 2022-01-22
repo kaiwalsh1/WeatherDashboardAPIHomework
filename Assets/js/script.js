@@ -16,7 +16,7 @@ console.log(recentSearch);
 $('button').click(function (e) {
     city = $('#formGroupInput').val();
     // recentSearch.addClass('form-control');
-    var nameSection = $('<div>');
+    let nameSection = $('<div>');
     nameSection.addClass('form-control my-1');
     nameSection.text(city);
     // search history
@@ -55,28 +55,57 @@ function getApi2() {
         .then(function (data) {
             console.log(data, 'new');
             $('#uv').text(data.daily[0].uvi);
+            let parentContainer = $('<div>');
+            parentContainer.addClass('g-col-6 g-col-md-4');
             for (let i = 1; i < 6; i++) {
-                let parentContainer = $('<div>');
-                parentContainer.addClass('g-col-6 g-col-md-4');
+                let dayContainer = $('<div>');
+                dayContainer.addClass('g-col-6 g-col-md-4');
+                // 5-day forecast cards
+                // let tempEl = data.daily[i].temp.day;
+
+                // time element
                 let timeElement = $('<div>');
                 let unixtime = data.daily[i].dt;
                 let formatTime = moment.unix(unixtime).format("MM/DD/YYYY");
-                timeElement.text(formatTime);
-                parentContainer.append(timeElement);
+                timeElement.text(formatTime).addClass('h5 card-title');
+                dayContainer.append(timeElement);
+                // image
                 let imageEl = $("<img>");
                 let urlCode = "http://openweathermap.org/img/w/" + data.daily[i].weather[0].icon + ".png";
                 imageEl.attr("src", urlCode);
-                parentContainer.append(imageEl);
-                $('.grid').append(parentContainer);
+                dayContainer.append(imageEl);
+                // temp
                 let tempEl = $("<div>");
                 tempEl = data.daily[i].temp.day;
-                parentContainer.append("Temp: " + tempEl + "°F");
+                dayContainer.append("Temp: " + tempEl + "°F");
+                // wind
                 let windEl = $("<div>");
                 windEl = data.daily[i].wind_speed;
-                parentContainer.append("Wind: " + windEl + "MPH");
+                dayContainer.append("Wind: " + windEl + "MPH");
+                // humid
                 let humidEl = $("<div>");
                 humidEl = data.daily[i].humidity;
-                parentContainer.append("Humidity: " + humidEl + "%");
+                dayContainer.append("Humidity: " + humidEl + "%");
+                parentContainer.append(dayContainer);
             }
+            $('.grid').append(parentContainer);
         })
 }
+
+
+                // let weatherBlock = $(
+                //     `<div class="card" style="width: 11rem;">
+                //         <div class="card-body">
+                //             <h5 class="card-title"></h5>
+                //             <p class="card-text">
+                //                 <img src="${urlCode}" 
+                //                 <br />
+                //                 <b>Hi:</b> ${Math.round(data.daily[i].temp.max)}&deg; F <br />
+                //                 <b>Low:</b> ${Math.round(data.daily[i].temp.min)}&deg; F <br />
+                //             </p>
+                //         </div>
+                //     </div>
+                //     `
+                // );
+                // clear input form
+                $('input[name="formGroupInput"')
