@@ -56,36 +56,37 @@ function getApi2() {
             console.log(data, 'new');
             $('#uv').text(data.daily[0].uvi);
             let parentContainer = $('<div>');
-            parentContainer.addClass('g-col-6 g-col-md-4');
+            parentContainer.addClass('container g-col-6 g-col-md-4');
             for (let i = 1; i < 6; i++) {
-                let dayContainer = $('<div>');
-                dayContainer.addClass('g-col-6 g-col-md-4');
-                // 5-day forecast cards
-                // let tempEl = data.daily[i].temp.day;
-
-                // time element
+            // 5-day forecast cards
+                let dayContainer = $('<div>').addClass('card col-sm-2.5 ');
+                let cardForecast = $('<div>').addClass('card text-white bg-primary');
+                let cardBodyForecast = $('<div>').addClass('card-body p-3');
+            // time element
                 let timeElement = $('<div>');
                 let unixtime = data.daily[i].dt;
                 let formatTime = moment.unix(unixtime).format("MM/DD/YYYY");
                 timeElement.text(formatTime).addClass('h5 card-title');
-                dayContainer.append(timeElement);
-                // image
+            // image
                 let imageEl = $("<img>");
                 let urlCode = "http://openweathermap.org/img/w/" + data.daily[i].weather[0].icon + ".png";
                 imageEl.attr("src", urlCode);
-                dayContainer.append(imageEl);
-                // temp
+            // temp
                 let tempEl = $("<div>");
                 tempEl = data.daily[i].temp.day;
-                dayContainer.append("Temp: " + tempEl + "°F");
-                // wind
+            // wind
                 let windEl = $("<div>");
                 windEl = data.daily[i].wind_speed;
-                dayContainer.append("Wind: " + windEl + "MPH");
-                // humid
+            // humid
                 let humidEl = $("<div>");
                 humidEl = data.daily[i].humidity;
-                dayContainer.append("Humidity: " + humidEl + "%");
+                
+                cardBodyForecast.append(timeElement, imageEl);
+                cardBodyForecast.append("Temp: " + tempEl + "°F").addClass('card-text');
+                cardBodyForecast.append("Wind: " + windEl + "MPH").addClass('card-text');
+                cardBodyForecast.append("Humidity: " + humidEl + "%").addClass('card-text');
+                cardForecast.append(cardBodyForecast);
+                dayContainer.append(cardForecast);
                 parentContainer.append(dayContainer);
             }
             $('.grid').append(parentContainer);
@@ -108,4 +109,5 @@ function getApi2() {
                 //     `
                 // );
                 // clear input form
-                $('input[name="formGroupInput"')
+                // $('input[name="formGroupInput"')
+                                // let tempEl = data.daily[i].temp.day;
