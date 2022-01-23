@@ -42,6 +42,12 @@ function getApi() {
             $('#humid').text(data.main.humidity);
 
             getApi2();
+            let urlCode = "http://openweathermap.org/img/w/" + data.daily[i].weather[0].icon + ".png";
+
+            let dayCard = $('<div>').addClass('card');
+            let dayCardBody = $('<div>').addClass('card-body')
+            
+
         })
 }
 
@@ -55,13 +61,8 @@ function getApi2() {
         .then(function (data) {
             console.log(data, 'new');
             $('#uv').text(data.daily[0].uvi);
-            let parentContainer = $('<div>');
-            parentContainer.addClass('container g-col-6 g-col-md-4');
+
             for (let i = 1; i < 6; i++) {
-            // 5-day forecast cards
-                let dayContainer = $('<div>').addClass('card col-sm-2.5 ');
-                let cardForecast = $('<div>').addClass('card text-white bg-primary');
-                let cardBodyForecast = $('<div>').addClass('card-body p-3');
             // time element
                 let timeElement = $('<div>');
                 let unixtime = data.daily[i].dt;
@@ -80,16 +81,21 @@ function getApi2() {
             // humid
                 let humidEl = $("<div>");
                 humidEl = data.daily[i].humidity;
+            // 5-day forecast cards
+                let forecastCol = $('<div>').addClass('col-sm-3');
+                let forecastCard = $('<div>').addClass('card text-white bg-primary');
+                let forecastCardBody = $('<div>').addClass('card-body p-2');
                 
-                cardBodyForecast.append(timeElement, imageEl);
-                cardBodyForecast.append("Temp: " + tempEl + "°F").addClass('card-text');
-                cardBodyForecast.append("Wind: " + windEl + "MPH").addClass('card-text');
-                cardBodyForecast.append("Humidity: " + humidEl + "%").addClass('card-text');
-                cardForecast.append(cardBodyForecast);
-                dayContainer.append(cardForecast);
-                parentContainer.append(dayContainer);
+                forecastCardBody.append(timeElement, imageEl)
+                forecastCardBody.append("Temp: " + tempEl + "°F").addClass('card-text');
+                forecastCardBody.append("Wind: " + windEl + "MPH").addClass('card-text');
+                forecastCardBody.append("Humidity: " + humidEl + "%").addClass('card-text');
+
+                forecastCard.append(forecastCardBody);
+                forecastCol.append(forecastCard);
+                $('#colForecast').append(forecastCol);
             }
-            $('.grid').append(parentContainer);
+
         })
 }
 

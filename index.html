@@ -13,7 +13,7 @@
 
 <body>
     <h1 class="header">Weather Dashboard</h1>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <!-- Search for a City -->
             <div class="col-4">
@@ -32,6 +32,7 @@
                     </div>
                 </div>
             </div>
+        <div class="col-lg-9">
             <!-- Weather Forecast -->
             <div id="dayForecast" class="d-flex col-md-9">
                 <div class="align-items-end">
@@ -43,12 +44,17 @@
                 </div>
             </div>
             <!-- 5-Day Forecast -->
-            <div class="col">
-                <h3 id="forecast" class="hidden">5-Day Forecast:</h3>
-                <div class="grid row">
+            <div>
+                <h3>5-Day Forecast:</h3>
+                <div id="forecast" class="card mt-3">
+                    <div class="row" id="colForecast">
 
+
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
         </div>
 
 
