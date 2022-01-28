@@ -15,14 +15,25 @@ console.log(recentSearch);
 // Button
 $('button').click(function (e) {
     city = $('#formGroupInput').val();
-    // recentSearch.addClass('form-control');
     let nameSection = $('<div>');
     nameSection.addClass('form-control my-1');
     nameSection.text(city);
     // search history
     recentSearch.append(nameSection);
+
     getApi();
 })
+
+
+
+// // recentSearch = JSON.parse(localStorage.getItem(city));
+// if (localStorage.getItem("city")) {
+//     city = JSON.parse(localStorage.getItem("city"));
+// } else {
+//     city = [];
+// }
+
+
 
 function getApi() {
     queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + APIKey;
@@ -42,11 +53,11 @@ function getApi() {
             $('#humid').text(data.main.humidity);
 
             getApi2();
-            let urlCode = "http://openweathermap.org/img/w/" + data.daily[i].weather[0].icon + ".png";
+            // let urlCode = "http://openweathermap.org/img/w/" + data.daily[i].weather[0].icon + ".png";
 
             let dayCard = $('<div>').addClass('card');
             let dayCardBody = $('<div>').addClass('card-body')
-            
+
 
         })
 }
