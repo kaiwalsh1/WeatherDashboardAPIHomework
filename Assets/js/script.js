@@ -42,17 +42,6 @@ $('button').click(function (e) {
     getApi();
 })
 
-
-
-// // recentSearch = JSON.parse(localStorage.getItem(city));
-// if (localStorage.getItem("city")) {
-//     city = JSON.parse(localStorage.getItem("city"));
-// } else {
-//     city = [];
-// }
-
-
-
 function getApi() {
     queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + APIKey;
     console.log(queryURL);
@@ -67,18 +56,9 @@ function getApi() {
             $('#location').text(data.name);
             $('#location').addClass('strong');
             $('#temp').text("Temp: " + data.main.temp);
-            $('#wind').text(data.wind.speed);
-            $('#humid').text(data.main.humidity);
-
+            $('#wind').text("Wind: " + data.wind.speed);
+            $('#humid').text("Humidity: " + data.main.humidity);
             getApi2();
-            // let urlCode = "http://openweathermap.org/img/w/" + data.daily[i].weather[0].icon + ".png";
-
-            // let dayCard = $('<div>').addClass('card');
-            // let dayCardBody = $('<div>').addClass('card-body')
-            // let tempDay = data.main.temp;
-            // $('#temp').append(tempDay);
-            // dayCardBody.append(tempDay);
-
         })
 }
 
@@ -129,22 +109,3 @@ function getApi2() {
 
         })
 }
-
-
-                // let weatherBlock = $(
-                //     `<div class="card" style="width: 11rem;">
-                //         <div class="card-body">
-                //             <h5 class="card-title"></h5>
-                //             <p class="card-text">
-                //                 <img src="${urlCode}" 
-                //                 <br />
-                //                 <b>Hi:</b> ${Math.round(data.daily[i].temp.max)}&deg; F <br />
-                //                 <b>Low:</b> ${Math.round(data.daily[i].temp.min)}&deg; F <br />
-                //             </p>
-                //         </div>
-                //     </div>
-                //     `
-                // );
-                // clear input form
-                // $('input[name="formGroupInput"')
-                                // let tempEl = data.daily[i].temp.day;
