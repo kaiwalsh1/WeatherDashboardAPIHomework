@@ -9,8 +9,31 @@ let searchHistoryContainer = $('#searchHistoryContainer');
 let searchBtn = $('#button');
 let day = [];
 let recentSearch = $('#recentSearch');
-console.log(recentSearch);
+let saveList = [];
 
+function addToLocalStorage(cityName) {
+    saveList.push(cityName);
+    console.log(saveList);
+    localStorage.setItem('recentSearches', JSON.stringify(saveList));
+}
+
+function addToRecentSearches(){
+    if (localStorage.getItem('recentSearches') === null ) {
+        saveList = [];
+    } else {
+        saveList = JSON.parse(localStorage.getItem("recentSearches"))
+    }
+    console.log(saveList);
+    for (let i = 0; i < saveList.length; i++) {
+        console.log(saveList[i]);
+        let nameSection = $('<div>');
+        nameSection.addClass('form-control my-1');
+        nameSection.text(saveList[i]);
+        // search history
+        recentSearch.append(nameSection)
+    }
+}
+addToRecentSearches();
 
 // Button
 $('button').click(function (e) {
@@ -20,7 +43,7 @@ $('button').click(function (e) {
     nameSection.text(city);
     // search history
     recentSearch.append(nameSection);
-
+    addToLocalStorage(city);
     getApi();
 })
 
@@ -48,16 +71,18 @@ function getApi() {
             lon = data.coord.lon;
             $('#location').text(data.name);
             $('#location').addClass('strong');
-            $('#temp').text(data.main.temp);
+            $('#temp').text("Temp: " + data.main.temp);
             $('#wind').text(data.wind.speed);
             $('#humid').text(data.main.humidity);
 
             getApi2();
             // let urlCode = "http://openweathermap.org/img/w/" + data.daily[i].weather[0].icon + ".png";
 
-            let dayCard = $('<div>').addClass('card');
-            let dayCardBody = $('<div>').addClass('card-body')
-
+            // let dayCard = $('<div>').addClass('card');
+            // let dayCardBody = $('<div>').addClass('card-body')
+            // let tempDay = data.main.temp;
+            // $('#temp').append(tempDay);
+            // dayCardBody.append(tempDay);
 
         })
 }
