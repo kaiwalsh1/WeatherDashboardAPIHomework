@@ -18,12 +18,7 @@ function addToLocalStorage(cityName) {
 }
 
 function addToRecentSearches(){
-    if (localStorage.getItem('recentSearches') === null ) {
-        saveList = [];
-    } else {
-        saveList = JSON.parse(localStorage.getItem("recentSearches"))
-    }
-    console.log(saveList);
+    saveList = JSON.parse(localStorage.getItem("recentSearches")) || [];
     for (let i = 0; i < saveList.length; i++) {
         console.log(saveList[i]);
         let nameSection = $('<div>');
