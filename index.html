@@ -13,10 +13,10 @@
 
 <body>
     <h1 class="header">Weather Dashboard</h1>
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
             <!-- Search for a City -->
-            <div class="col-4">
+            <div class="col-sm-4 col-lg-4">
                 <h2>Search for a City:</h2>
                 <div class="mb-3">
                     <label for="formGroupInput" class="form-label"></label>
@@ -28,32 +28,36 @@
                 </div>
                 <div class="container" id="searchHistoryContainer">
                     <div class="row" id="recentSearch">
-
                     </div>
                 </div>
             </div>
-        <div class="col-lg-9">
-            <!-- Weather Forecast -->
-            <div id="dayForecast" class="d-flex col-md-9 card">
-                <div class="align-items-end card-body">
-                    <div id="location"></div>
-                    <div id="temp"></div>
-                    <div id="wind"></div>
-                    <div id="humid"></div>
-                    <div id="uv"></div>
+            <!-- <div class="row justify-content"> -->
+                <div class="col-sm-8 col-lg-8">
+                <!-- Weather Forecast -->
+                <div id="dayForecast" class="card">
+                    <div class="card-body">
+                        <h3 class="card-title" id="location"><img id="iconDay"></h3>
+                        <p class="card-text" id="temp"></p>
+                        <p class="card-text" id="wind"></p>
+                        <p class="card-text" id="humid"></p>
+                        <p class="card-text" id="uv">
+                            <span class="btn btn-sm" id="uvBtn"></span>
+                        </p>
+                    </div>
                 </div>
             </div>
-            <!-- 5-Day Forecast -->
-            <div>
-                <h3>5-Day Forecast:</h3>
-                <div id="forecast" class="card mt-3">
-                    <div class="row" id="colForecast">
+                <!-- 5-Day Forecast -->
+                <div class="mt-3">
+                    <h3>5-Day Forecast:</h3>
+                    <div id="forecast" class="card mt-2">
+                        <div class="row" id="colForecast">
 
 
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            <!-- </div> -->
         </div>
         </div>
 
