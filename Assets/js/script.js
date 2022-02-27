@@ -18,18 +18,50 @@ function addToLocalStorage(cityName) {
     localStorage.setItem('recentSearches', JSON.stringify(saveList));
 }
 // gets array from local storage, or sets to an empty array if nothing found
-function addToRecentSearches(){
+function addToRecentSearches() {
     saveList = JSON.parse(localStorage.getItem("recentSearches")) || [];
     for (let i = 0; i < saveList.length; i++) {
         console.log(saveList[i]);
-        let nameSection = $('<div>');
+        const nameSection = $('<div>');
         nameSection.addClass('form-control my-1');
         nameSection.text(saveList[i]);
-        // search history
-        recentSearch.append(nameSection)
+
+
     }
 }
 addToRecentSearches();
+
+// const recentSearchBtn = function (event) {
+//     if ()
+// }
+/*
+var buttonClickHandler = function (event) {
+    var language = event.target.getAttribute('data-language');
+
+    if (language) {
+        getFeaturedRepos(language);
+
+        repoContainerEl.textContent = '';
+    }
+};
+
+// search history
+    const recentSearchBtn = $('<button>');
+    // $('recentSearchBtn')
+    recentSearchBtn.click(function (e) {
+        if ($(e.target).is(":button")) {
+            return getApi(), getApi2();
+        }
+        // ($( e.target ).is(":button")) {
+        //   //check
+
+        // }
+    });
+    recentSearchBtn.append(nameSection);
+    recentSearch.append(nameSection);
+
+*/
+
 
 // function saveList.on('click', {
 
@@ -38,14 +70,38 @@ addToRecentSearches();
 // Button
 $('button').click(function (e) {
     city = $('#formGroupInput').val();
-    let nameSection = $('<div>');
-    nameSection.addClass('form-control my-1');
+    const nameSection = $('<div>');
+    nameSection.addClass('form-control my-1 recentSearchName');
     nameSection.text(city);
+    getApi();
     // search history
     recentSearch.append(nameSection);
+    $('.recentSearchName').on('click', function () {
+        getApi();
+    });
     addToLocalStorage(city);
-    getApi();
+    // getApi()
+    console.log("success");
+
+
+    // $.(".recentSearchName").on('click', function(getApi) {
+    //     let recentSearch
+    // })
+    // let buttons - document.que
+    // for (let i = 0; i < name.length; i++) {
+    //     let 
+    // }
 })
+
+// var buttons = document.querySelectorAll('.btn')
+// buttons.forEach(function (button) {
+//   var button = new bootstrap.Button(button)
+//   button.toggle()
+// })
+
+// $('button').click(function (e) {
+
+// })
 
 function getApi() {
     queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + APIKey;
@@ -89,52 +145,51 @@ function getApi2() {
         .then(function (data) {
             let uvResponse = data.daily[0].uvi;
             $('#uv').text("UV Index: ");
-            
+            console.log(uvResponse);
             if (uvResponse < 3) {
                 $('#uvBtn').addClass('btn-success');
             } else if (uvResponse < 7) {
                 $('#uvBtn').addClass('btn-warning');
             } else {
                 $('#uvBtn').addClass('btn-danger');
-            } 
-            
+            }
+
             $('#uvBtn').text(data.daily[0].uvi).append(uvResponse.value);
             console.log(uvResponse);
-            
 
-            
+
+
 
             for (let i = 1; i < 6; i++) {
-            // time element
+                // time element
                 let timeElement = $('<div>');
                 let unixtime = data.daily[i].dt;
                 let formatTime = moment.unix(unixtime).format("MM/DD/YYYY");
                 timeElement.text(formatTime).addClass('h5 card-title');
-            // image
+                // image
                 let imageEl = $("<img>");
                 let urlCode = "http://openweathermap.org/img/w/" + data.daily[i].weather[0].icon + ".png";
                 imageEl.attr("src", urlCode);
-            // temp
+                // temp
                 let tempEl = $("<div>");
                 tempEl = data.daily[i].temp.day;
-            // wind
+                // wind
                 let windEl = $("<div>");
                 windEl = data.daily[i].wind_speed;
-            // humid
+                // humid
                 let humidEl = $("<div>");
                 humidEl = data.daily[i].humidity;
-            // 5-day forecast cards
+                // 5-day forecast cards
                 let forecastCol = $('<div>').addClass('col-sm-3');
                 let forecastCard = $('<div>').addClass('card text-white bg-primary');
                 let forecastCardBody = $('<div>').addClass('card-body p-2');
-                
+
                 forecastCardBody.append(timeElement, imageEl)
                 forecastCardBody.append("Temp: " + tempEl + "°F").addClass('card-text');
                 forecastCardBody.append("Wind: " + windEl + "MPH").addClass('card-text');
                 forecastCardBody.append("Humidity: " + humidEl + "%").addClass('card-text');
-
-                forecastCard.append(forecastCardBody);
-                forecastCol.append(forecastCard);
+                forecastCard.empty().append(forecastCardBody);
+                forecastCol.empty().append(forecastCard);
                 $('#colForecast').append(forecastCol);
             }
 
