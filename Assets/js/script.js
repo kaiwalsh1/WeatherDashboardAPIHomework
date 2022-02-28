@@ -71,7 +71,7 @@ var buttonClickHandler = function (event) {
 $('button').click(function (e) {
     city = $('#formGroupInput').val();
     const nameSection = $('<div>');
-    nameSection.addClass('form-control my-1 recentSearchName');
+    nameSection.addClass('form-control my-1 recentSearchName btn-secondary text-center');
     nameSection.text(city);
     getApi();
     // search history

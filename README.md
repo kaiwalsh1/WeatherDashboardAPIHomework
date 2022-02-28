@@ -34,7 +34,7 @@ https://coding-boot-camp.github.io/full-stack/apis/how-to-use-api-keys
 
 
 ## Screenshot
-![]
+![Screenshot of Weather Dashboard](./Assets/weatherDashboardScreenshot.png)
 
 
 
